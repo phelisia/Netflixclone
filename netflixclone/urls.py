@@ -13,15 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path
-from django.contrib import admin
-from django.conf import settings            # Add this line
-from django.conf.urls.static import static  # Add this line
+from django.conf import settings
+from django.conf.urls.static import static
+from netflix.views import index_view, login_view, register_view
+from netflix.views import logout_view
+from netflix.views import detail_view
+ # Add this line
 
 urlpatterns = [
-     
     path('admin/', admin.site.urls),
+    path('', index_view, name='home'), # Add this line
+    path('login',login_view, name='login'),
+    path('register',register_view,name='register'),
+    path('logout', logout_view,name='logout'),
+    path('movie_detail', detail_view,name='movie_detail')
 ]
 
 # Add the lines below
